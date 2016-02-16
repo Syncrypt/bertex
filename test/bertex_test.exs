@@ -9,6 +9,10 @@ defmodule Bertex.Test do
     assert decode(encode(term)) == term
   end
 
+  test "encode nil" do
+    assert binary_to_term(encode(nil)) == {:bert, nil}
+  end
+
   test "encode true" do
     assert binary_to_term(encode(true)) == {:bert, true}
   end
@@ -39,7 +43,7 @@ defmodule Bertex.Test do
   end
 
   test "encode empty list" do
-    assert binary_to_term(encode([])) == {:bert, nil}
+    assert binary_to_term(encode([])) == []
   end
 
   test "encode list" do
@@ -56,6 +60,10 @@ defmodule Bertex.Test do
     dict = HashDict.new
       |> Dict.put(:key, "value")
     assert binary_to_term(encode(dict)) == {:bert, :dict, key: "value"}
+  end
+
+  test "decode nil" do
+    assert decode(term_to_binary({:bert, nil})) == nil
   end
 
   test "decode true" do
@@ -83,7 +91,7 @@ defmodule Bertex.Test do
   end
 
   test "decode empty list" do
-    assert decode(term_to_binary({:bert, nil})) == []
+    assert decode(term_to_binary([])) == []
   end
 
   test "decode list" do
@@ -101,6 +109,10 @@ defmodule Bertex.Test do
       |> Dict.put(:key, "value")
       |> Dict.put(:key2, false)
     assert decode(term_to_binary({:bert, :dict, key: "value", key2: {:bert, false}})) == dict
+  end
+
+  test "encode/decode nil" do
+    assert_term(nil)
   end
 
   test "encode/decode true" do
