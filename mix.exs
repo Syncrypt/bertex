@@ -7,8 +7,8 @@ defmodule Bertex.Mixfile do
 
   def project do
     [ app: :bertex,
-      version: "1.3.0",
-      elixir: "~> 0.14.2 or ~> 0.15.0 or ~> 1.0.0 or ~> 1.2.0",
+      version: "1.3.1",
+      elixir: "~> 0.14.2 or ~> 0.15.0 or ~> 1.0.0 or ~> 1.2.0 or ~> 1.3.0",
       name: "Bertex",
       description: @description,
       package: package,
