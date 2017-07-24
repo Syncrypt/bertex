@@ -55,15 +55,9 @@ defmodule Bertex do
   end
 
   defimpl Bert, for: Map do
-    def encode(dict), do: {:bert, :dict, Dict.to_list(dict)}
+    def encode(map), do: {:bert, :dict, Map.to_list(map)}
     # This should never happen.
-    def decode(dict), do: Enum.into(dict, %{})
-  end
-
-  defimpl Bert, for: HashDict do
-    def encode(dict), do: {:bert, :dict, Dict.to_list(dict)}
-    # This should never happen.
-    def decode(dict), do: Enum.into(dict, %{})
+    def decode(map), do: Enum.into(map, %{})
   end
 
   defimpl Bert, for: Any do
